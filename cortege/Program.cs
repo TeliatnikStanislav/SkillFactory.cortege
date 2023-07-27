@@ -21,6 +21,7 @@ namespace cortege
                 User.Dishes[i] = Console.ReadLine();
             }
             Console.ReadKey();
+
         }
     }
 }
