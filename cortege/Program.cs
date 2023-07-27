@@ -9,10 +9,9 @@ namespace cortege
 {
     internal class Program
     {
-        static int[] GetArrayFromConsole(int num = 5)
+        static int[] GetArrayFromConsole(ref int num)
         {
             var result = new int[num];
-
             for (int i = 0; i < result.Length; i++)
             {
                 Console.WriteLine("Введите элемент массива номер {0}", i + 1);
@@ -51,13 +50,19 @@ namespace cortege
             }
             
         }
+        static void ChangeAge(ref int myAge)
+        {
+            myAge += 1;
+        }
 
         static void Main(string[] args)
         {
-
-            var array = GetArrayFromConsole(3);
+            int SizeArray = 6;
+            var array = GetArrayFromConsole(ref SizeArray);
             ShowArray(array, true);
-
+            int Age = Convert.ToInt32(Console.ReadLine());
+            ChangeAge(ref Age);
+            Console.WriteLine(Age);
             Console.ReadKey();
         }
     }
