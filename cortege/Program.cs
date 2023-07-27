@@ -36,7 +36,7 @@ namespace cortege
             return result;
 
         }
-        static string ShowColor(string username)
+        static string ShowColor(string username, int userage)
         {
             Console.WriteLine($"Напишите свой любимый цвет на английском с маленькой буквы, {username}");
             var color = Console.ReadLine();
@@ -47,26 +47,26 @@ namespace cortege
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is red!");
+                    Console.WriteLine($"Your color is red! \n {username},{userage}");
                     break;
 
                 case "green":
                     Console.BackgroundColor = ConsoleColor.Green;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is green!");
+                    Console.WriteLine($"Your color is green! \n {username},{userage}");
                     break;
                 case "cyan":
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     Console.ForegroundColor = ConsoleColor.Black;
 
-                    Console.WriteLine("Your color is cyan!");
+                    Console.WriteLine($"Your color is cyan! \n {username},{userage}");
                     break;
                 default:
                     Console.BackgroundColor = ConsoleColor.Yellow;
                     Console.ForegroundColor = ConsoleColor.Red;
 
-                    Console.WriteLine("Your color is yellow!");
+                    Console.WriteLine($"Your color is yellow! \n {username},{userage}");
                     break;
             }
             return color;
@@ -86,7 +86,7 @@ namespace cortege
 
             for(int i = 0; i < favcolors.Length; i++)
             {
-                favcolors[i] = ShowColor(anketa.name); 
+                favcolors[i] = ShowColor(anketa.name, anketa.age); 
             }
             Console.ReadKey();
         }
