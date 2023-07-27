@@ -21,7 +21,28 @@ namespace cortege
             return result;
 
         }
-        static int[] SortArray(int[] result)
+        static void SortArray(int[] result, out int[] arraydesc, out int[] arrayasc)
+        {
+            arrayasc = SortArrayAsc(result);
+            arraydesc = SortArrayDesc(result);
+        }
+        static int[] SortArrayAsc(int[] result)
+        {
+            for (int j = 0; j < result.Length; j++)
+            {
+                for (int h = j + 1; h < result.Length; h++)
+                {
+                    if (result[j] < result[h])
+                    {
+                        int Variable = result[j];
+                        result[j] = result[h];
+                        result[h] = Variable;
+                    }
+                }
+            }
+            return result;
+        }
+        static int[] SortArrayDesc(int[] result)
         {
             for (int j = 0; j < result.Length; j++)
             {
@@ -37,19 +58,19 @@ namespace cortege
             }
             return result;
         }
-        static void ShowArray(int[] array, bool IsSort = false)
-        {
-            var temp = array;
-            if(IsSort)
-            {
-                temp = SortArray(array);
-            }
-            foreach (int i in temp)
-            {
-                Console.WriteLine(i);
-            }
+        //static void ShowArray(int[] array, bool IsSort = false)
+        //{
+        //    var temp = array;
+        //    if(IsSort)
+        //    {
+        //        temp = SortArray(array);
+        //    }
+        //    foreach (int i in temp)
+        //    {
+        //        Console.WriteLine(i);
+        //    }
             
-        }
+        //}
         static void ChangeAge(ref int myAge)
         {
             myAge += 1;
@@ -58,8 +79,9 @@ namespace cortege
         static void Main(string[] args)
         {
             int SizeArray = 6;
+
             var array = GetArrayFromConsole(ref SizeArray);
-            ShowArray(array, true);
+            //ShowArray(array, true);
             int Age = Convert.ToInt32(Console.ReadLine());
             ChangeAge(ref Age);
             Console.WriteLine(Age);
