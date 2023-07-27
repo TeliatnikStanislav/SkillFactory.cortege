@@ -8,24 +8,43 @@ namespace cortege
 {
     internal class Program
     {
-            static string GetDataFromConsole() => Console.ReadLine();
+        static int[] GetArrayFromConsole()
+        {
+            var result = new int[5];
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                Console.WriteLine("Введите элемент массива номер {0}", i + 1);
+                result[i] = int.Parse(Console.ReadLine());
+            }
+            for (int j = 0; j < result.Length; j++)
+            {
+                for (int h = j + 1; h < result.Length; h++)
+                {
+                    if (result[j] > result[h])
+                    {
+                        int Variable = result[j];
+                        result[j] = result[h];
+                        result[h] = Variable;
+                    }
+                }
+            }
+            foreach (int g in result)
+            {
+                Console.WriteLine(g);
+            }
+            return result;
+
+        }
         static string ShowColor()
         {
+
             string color = Console.ReadLine();
             return color;
         }
         static void Main(string[] args)
         {
-            string[] favcolor = new string[3];
-            for (int i = 0; i < 3; i++)
-            {
-                Console.WriteLine($"Напишите цвет {i + 1}");
-                favcolor[i] = ShowColor();
-            }
-            foreach (var color in favcolor)
-            {
-                Console.WriteLine(color);
-            }
+            GetArrayFromConsole();
             Console.ReadKey();
         }
     }
