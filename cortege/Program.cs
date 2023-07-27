@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,15 +9,21 @@ namespace cortege
 {
     internal class Program
     {
-        static int[] GetArrayFromConsole()
+        static int[] GetArrayFromConsole(int num = 5)
         {
-            var result = new int[5];
+            var result = new int[num];
 
             for (int i = 0; i < result.Length; i++)
             {
                 Console.WriteLine("Введите элемент массива номер {0}", i + 1);
                 result[i] = int.Parse(Console.ReadLine());
             }
+            
+            return result;
+
+        }
+        static int[] SortArray(int[] result)
+        {
             for (int j = 0; j < result.Length; j++)
             {
                 for (int h = j + 1; h < result.Length; h++)
@@ -29,65 +36,28 @@ namespace cortege
                     }
                 }
             }
-            foreach (int g in result)
-            {
-                Console.WriteLine(g);
-            }
             return result;
-
         }
-        static string ShowColor(string username, int userage)
+        static void ShowArray(int[] array, bool IsSort = false)
         {
-            Console.WriteLine($"Напишите свой любимый цвет на английском с маленькой буквы, {username}");
-            var color = Console.ReadLine();
-
-            switch (color)
+            var temp = array;
+            if(IsSort)
             {
-                case "red":
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine($"Your color is red! \n {username},{userage}");
-                    break;
-
-                case "green":
-                    Console.BackgroundColor = ConsoleColor.Green;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine($"Your color is green! \n {username},{userage}");
-                    break;
-                case "cyan":
-                    Console.BackgroundColor = ConsoleColor.Cyan;
-                    Console.ForegroundColor = ConsoleColor.Black;
-
-                    Console.WriteLine($"Your color is cyan! \n {username},{userage}");
-                    break;
-                default:
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    Console.WriteLine($"Your color is yellow! \n {username},{userage}");
-                    break;
+                temp = SortArray(array);
             }
-            return color;
+            foreach (int i in temp)
+            {
+                Console.WriteLine(i);
+            }
+            
         }
+
         static void Main(string[] args)
         {
-            (string name, int age) anketa;
 
-            Console.Write("Введите имя: ");
-            anketa.name = Console.ReadLine();
-            Console.WriteLine("Введите возраст с цифрами: ");
-            anketa.age = Convert.ToInt32( Console.ReadLine() );
-            Console.WriteLine($"Ваше имя: {anketa.name}");
-            Console.WriteLine($"Ваш возраст: {anketa.age}");
+            var array = GetArrayFromConsole(3);
+            ShowArray(array, true);
 
-            var favcolors = new string[3];
-
-            for(int i = 0; i < favcolors.Length; i++)
-            {
-                favcolors[i] = ShowColor(anketa.name, anketa.age); 
-            }
             Console.ReadKey();
         }
     }
