@@ -8,20 +8,27 @@ namespace cortege
 {
     internal class Program
     {
+            static string GetDataFromConsole() => Console.ReadLine();
+        static string ShowColor()
+        {
+            string color = Console.ReadLine();
+            return color;
+        }
         static void Main(string[] args)
         {
-            (string Name, string[] Dishes) User;
-            Console.WriteLine("Введите имя пользователя");
-            User.Name = Console.ReadLine();
-            Console.WriteLine(User.Name);
-            User.Dishes = new string[5];
-            for (int i = 0; i < 5; i++)
+            string[] favcolor = new string[3];
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Введите любимое блюдо номер {i + 1}");
-                User.Dishes[i] = Console.ReadLine();
+                Console.WriteLine($"Напишите цвет {i + 1}");
+                favcolor[i] = ShowColor();
+            }
+            foreach (var color in favcolor)
+            {
+                Console.WriteLine(color);
             }
             Console.ReadKey();
-
         }
     }
 }
+
+
